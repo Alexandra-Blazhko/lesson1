@@ -20,4 +20,4 @@ if ( (typeof(a)) === "string" && (typeof(a)) != null && (typeof(b)) != null
 }
 }
 appData.moneyPerDay = appData.budget / 30;
-alert("Еженедельный бюджет: " + appData.moneyPerDay);
+alert("Еженедельный бюджет : " + appData.moneyPerDay);
