@@ -1,4 +1,4 @@
-var money = prompt("Ваш бюджет на месяц?", "");
+var money = +prompt("Ваш бюджет на месяц?", "");
 var time = prompt("Введите дату в формате YYYY-MM-DD", "");
 var appData = {
     budget: money,
@@ -20,4 +20,4 @@ if ( (typeof(a)) === "string" && (typeof(a)) != null && (typeof(b)) != null
 }
 }
 appData.moneyPerDay = appData.budget / 30;
-alert("Еженедельный бюджет : " + appData.moneyPerDay);
+alert("Ежедневный бюджет : " + appData.moneyPerDay);
