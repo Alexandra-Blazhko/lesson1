@@ -30,9 +30,10 @@ var answer = prompt("Как вам apple?", "");
 document.getElementById('prompt').innerHTML = answer;
     }
 }
-setTimeout(call, 3000);
+setTimeout(call, 1000);
 
-//НУЖНО ПОМЕНЯТЬ БЭКГРАУНД!
-//var apple = document.createElement('img'); 
-//apple.scr = 'apple-true.jpg';
-//document.body.style.background = 'apple';
+    //НУЖНО ПОМЕНЯТЬ БЭКГРАУНД!
+var apple = document.querySelector('body');
+//apple.style.backgroundImage = "url(C:/Javascript/for each/урок с яблоком 017/img/apple1.img)";
+apple.style.backgroundImage = "url('https://www.gastronom.ru/binfiles/images/20160829/b15df714.jpg')";
+console.log(apple);

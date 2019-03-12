@@ -1,3 +1,22 @@
+var expenses = document.getElementsByClassName("expenses-value")[0];
+var optionalExpenses = document.getElementsByClassName("optionalexpenses-value")[0];
+var income = document.getElementsByClassName("income-value")[0];
+var monthSavings = document.getElementsByClassName("monthsavings-value")[0];
+var yearSavings = document.getElementsByClassName("yearsavings-value")[0];
+
+var year = document.querySelector(".year-value");
+var month = document.querySelector(".month-value");
+var day = document.querySelector(".day-value");
+var expensesItem = document.getElementsByClassName("expenses-item");
+var expensesBtn = document.getElementsByTagName("button") [0];
+var optionalExpensesBtn = document.getElementsByTagName("button") [1];
+var optionalExpensesItem = document.querySelectorAll(".optionalexpenses-item");
+var countBtn = document.getElementsByTagName("button")[2];
+var income = document.querySelector(".choose-income");
+var savings = document.querySelector("#savings");
+var sum = document.querySelector(".choose-sum");
+var percent = document.querySelector(".choose-percent");
+
 let money, time;
 
 function start () {
