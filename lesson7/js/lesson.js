@@ -32,6 +32,26 @@ startBtn.addEventListener('click', function() {
     appData.budget = money;
     appData.timeData = time;
     budgetValue.textContent = money.toFixed();
+    yearValue.value = new Date(Date.parse(time)).getFullYear();
+    monthValue.value = new Date(Date.parse(time)).getMonth() + 1;
+    dayValue.value = new Date(Date.parse(time)).getDate();
+});
+
+expensesBtn.addEventListener("click", function() {
+    let sum = 0;
+    for (let i = 0; i < expensesItem.length; i++) {
+        var a = expensesItem[i].value;
+        var b = expensesItem[++i].value;
+       if ( (typeof(a)) === "string" && (typeof(a)) != null && (typeof(b)) != null
+     && a != "" && b != "" &&  a.length < 50) {
+        console.log("done");
+        appData.expenses[a] = b;
+        sum += +b;
+    } else {
+        i = i - 1;
+    }
+    }
+    expensesValue.textContent = sum;
 });
 
 var appData = {
@@ -42,17 +62,7 @@ var appData = {
     income: [],
     savings: true,
      chooseExpenses: function() {
-        for (let i = 0; i < 2; i++) {
-            var a = prompt("Введите обязательную статью расходов в этом месяце", "");
-            var b = prompt("Во сколько обойдётся?", "");
-           if ( (typeof(a)) === "string" && (typeof(a)) != null && (typeof(b)) != null
-         && a != "" && b != "" &&  a.length < 50) {
-            console.log("done");
-            appData.expenses[a] = b;
-        } else {
-            i = i - 1;
-        }
-        }
+        
      },
      detectDayBudget: function() {
          appData.moneyPerDay = (appData.budget / 30).toFixed();
