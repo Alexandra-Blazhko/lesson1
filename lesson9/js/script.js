@@ -17,7 +17,6 @@ window.addEventListener("DOMContentLoaded", function() {
             if (tabContent[b].classList.contains("hide")) {
                 tabContent[b].classList.remove("hide");
                 tabContent[b].classList.add("show");
-                break;
             }
         }
 
@@ -28,6 +27,7 @@ window.addEventListener("DOMContentLoaded", function() {
                     if (target == tab[i]) {
                         hideTabContent(0);
                         showTabContent(i);
+                        break;
                     }
                 }
             }
