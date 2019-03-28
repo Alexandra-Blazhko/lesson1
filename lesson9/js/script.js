@@ -84,4 +84,39 @@ window.addEventListener("DOMContentLoaded", function() {
 
     setClock("timer", deadLine);
 
+    // Modal
+
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+
+     more.addEventListener('click', function() {
+         overlay.style.display = 'block';
+         this.classList.add('more-splash');
+         //Запретить прокручивать сайт за модальным окном
+         document.body.style.overflow = 'hidden';
+     });
+     
+     close.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        more.classList.remove('more-splash');
+        document.body.style.overflow = '';
+     })
+
+     // Popup
+
+     let popup = document.querySelector('.popup-form'),
+         input = document.querySelector('.popup-form__input'),
+         btn = document.querySelector('.button popup-form__btn');
+      
+         var closePopup = function() {
+            popup.classList.add('hidden');
+         }
+
+         function checkPhoneNumber() {
+           if (isNaN(input) || input == "" || input != null || keyCode === 27) {
+                btn.addEventListener('click', closePopup());
+           }
+           
+         }
 });
