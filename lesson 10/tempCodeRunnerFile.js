@@ -11,16 +11,13 @@ class Options {
             var newDiv = document.createElement('div');
             document.body.appendChild(newDiv);
             newDiv.textContent = prompt("What?", "");
-            newDiv.style.cssText = newDiv.style.cssText = 'height: ' + this.height + '; \
-            width: ' + this.width + '; \
-            background-color: ' + this.backgroundColor + '; \
-            font-size: ' + this.fontSize + '; \
-            text-align: ' + this.textAlign;    
+            //newDiv.style.background = this.backgroundColor;
+            newDiv.style.cssText = 'height: this.height; width: this.width; background-color: red; font-size: 44px; color: blue';
+            
+                    //console.log(makeNewDiv())
+                   
          }
 
      }
-     var newOptions = new Options(100, 100, "red", 44, "center");
-    
-    console.log(newOptions.makeNewDiv());
-
-     
+     var newOptions = new Options(150, 150);
+    console.log(newOptions.makeNewDiv(150, 150));
