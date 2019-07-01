@@ -120,6 +120,28 @@ window.addEventListener("DOMContentLoaded", function() {
            
          }
 
+         // Current
+
+        /* let inputRub = document.getElementById("rub"),
+             inputUsd = document.getElementById("usd");
+             inputRub.addEventListener("input", () => {
+                let requestCurrent = new XMLHttpRequest();
+
+               // requestCurrent.open(method, url, async, login, pass);
+                requestCurrent.open("GET", "js/current.json");
+                requestCurrent.setRequestHeader("Content-type", "application/json; charset=utf-8");
+                requestCurrent.send(body);
+                requestCurrent.addEventListener("readystatechange", function() {
+                    if (requestCurrent.readyState === 4 && requestCurrent.status == 200) {
+                        let data = JSON.parse(requestCurrent.response);
+
+                        inputUsd.value = inputRub.value / data.usd;
+                  } else {
+                        inputUsd.value = "Что-то пошло не так!";
+                }
+                });
+             })*/
+
          // Form
 
          let message = {
@@ -140,7 +162,7 @@ window.addEventListener("DOMContentLoaded", function() {
             let request = new XMLHttpRequest();
                 request.open("POST", "server.php");
                // request.setRequestHeader("Content-Type", "application/x-www-form-urllencoded");
-               request.setRequestHeader("Content-type", "application/json; charset-utf8");
+               request.setRequestHeader("Content-type", "application/json; charset=utf-8");
 
                 let formData = new FormData(form);
 
@@ -148,11 +170,12 @@ window.addEventListener("DOMContentLoaded", function() {
                 formData.forEach(function(value, key){
                      obj[key] = value;
                 });
-                let json = JSON.stringify(obj);
-                request.send(json);
+                // let json = JSON.stringify(obj);
+                // request.send(json);
+                // console.log(request);
 
 
-                request.send(formData);
+                //request.send(formData);
 
                 request.addEventListener("readystatechange", function(){
                     if (request.readyState < 4) {
@@ -162,12 +185,14 @@ window.addEventListener("DOMContentLoaded", function() {
                     } else {
                         statusMessage.innerHTML = message.failure;
                     }
-                });
 
+                });
                 for (let i = 0; i < input.length; i++) {
                     input[i].value = "";
                 }
 
+                let json = JSON.stringify(obj);
+                    request.send(json);
         });
 
 });
