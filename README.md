@@ -1,3 +1,2 @@
-Java Script lessons by Ivan Petrichenko.
+JavaScript lessons by Ivan Petrychenko.
  
-Sorry for the mess.
