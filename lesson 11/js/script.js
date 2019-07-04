@@ -143,56 +143,103 @@ window.addEventListener("DOMContentLoaded", function() {
              })*/
 
          // Form
-
+         
          let message = {
-             loading: "Загрузка...",
-             success: "Спасибо! Скоро мы с вами свяжемся!",
-             failure: "Что-то пошло не так..."
-         };
+            loading: "Загрузка...",
+            success: "Спасибо! Скоро мы с вами свяжемся!",
+            failure: "Что-то пошло не так..."
+        };
+        let form = document.querySelector(".main-form"),
+            inputForm = form.getElementsByTagName("input"),
+            statusMessage = document.createElement("div");
+            statusMessage.classList.add("status");
+       form.addEventListener("submit", function(evt){
+           evt.preventDefault();
+           form.appendChild(statusMessage);
+           let request = new XMLHttpRequest();
+               request.open("POST", "server.php");
+              // request.setRequestHeader("Content-Type", "application/x-www-form-urllencoded");
+              request.setRequestHeader("Content-type", "application/json; charset=utf-8");
 
-         let form = document.querySelector(".main-form"),
-             inputForm = form.getElementsByTagName("input"),
-             statusMessage = document.createElement("div");
+               let formData = new FormData(form);
 
-             statusMessage.classList.add("status");
-        form.addEventListener("submit", function(evt){
-            evt.preventDefault();
-            form.appendChild(statusMessage);
+               let obj = {};
+               formData.forEach(function(value, key){
+                    obj[key] = value;
+               });
+            //    let json = JSON.stringify(obj);
+            //    request.send(json);
 
-            let request = new XMLHttpRequest();
-                request.open("POST", "server.php");
-               // request.setRequestHeader("Content-Type", "application/x-www-form-urllencoded");
-               request.setRequestHeader("Content-type", "application/json; charset=utf-8");
+               //request.send(formData);
 
-                let formData = new FormData(form);
+               request.addEventListener("readystatechange", function(){
+                   if (request.readyState < 4) {
+                       statusMessage.innerHTML = message.loading;
+                   } else if (request.readyState === 4 && request.status == 200) {
+                       statusMessage.innerHTML = message.success;
+                   } else {
+                       statusMessage.innerHTML = message.failure;
+                   }
 
-                let obj = {};
-                formData.forEach(function(value, key){
-                     obj[key] = value;
-                });
-                // let json = JSON.stringify(obj);
-                // request.send(json);
-                // console.log(request);
+               });
+               for (let i = 0; i < input.length; i++) {
+                   input[i].value = "";
+               }
 
+               let json = JSON.stringify(obj); 
+                   request.send(json);
+       });
+    // Slider 
 
-                //request.send(formData);
+    let slideIndex = 1,
+        slides = document.querySelectorAll(".slider-item"),
+        prev = document.querySelector(".prev"),
+        next = document.querySelector(".next"),
+        dotsWrap = document.querySelector(".slider-dots"),
+        dots = document.querySelectorAll(".dot");
 
-                request.addEventListener("readystatechange", function(){
-                    if (request.readyState < 4) {
-                        statusMessage.innerHTML = message.loading;
-                    } else if (request.readyState === 4 && request.status == 200) {
-                        statusMessage.innerHTML = message.success;
-                    } else {
-                        statusMessage.innerHTML = message.failure;
-                    }
+    showSlides(slideIndex);
 
-                });
-                for (let i = 0; i < input.length; i++) {
-                    input[i].value = "";
-                }
+    function showSlides(n) {
 
-                let json = JSON.stringify(obj);
-                    request.send(json);
-        });
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
 
-});
+        slides.forEach((item) => item.style.display = "none");
+        // for (let i = 0; i < slides.length; i++) {
+        //     slides[i].style.display = "none";
+        // }
+        
+        dots.forEach((item) => item.classList.remove('dot-active'));
+
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].classList.add("dot-active");
+    }
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+    function currentSlide(n) {
+        showSlides(slideIndex =n);
+    }
+
+    prev.addEventListener("click", function() {
+        plusSlides(-1);
+    });
+
+    next.addEventListener("click", function() {
+        plusSlides(1);
+    });
+
+    dotsWrap.addEventListener("click", function(evt) {
+        for (let i = 0; i < dots.length +1; i++) {
+            if (evt.target.classList.contains("dot") && evt.target == dots[i-1]) {
+                currentSlide(i);
+            }
+        }
+    });
+}); 
