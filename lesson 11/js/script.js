@@ -149,11 +149,12 @@ window.addEventListener("DOMContentLoaded", function() {
             success: "Спасибо! Скоро мы с вами свяжемся!",
             failure: "Что-то пошло не так..."
         };
-        let form = document.querySelector(".main-form"),
+         let form = document.querySelector(".main-form"),
             inputForm = form.getElementsByTagName("input"),
             statusMessage = document.createElement("div");
             statusMessage.classList.add("status");
-       form.addEventListener("submit", function(evt){
+
+         form.addEventListener("submit", function(evt) {
            evt.preventDefault();
            form.appendChild(statusMessage);
            let request = new XMLHttpRequest();
@@ -170,7 +171,6 @@ window.addEventListener("DOMContentLoaded", function() {
             //    let json = JSON.stringify(obj);
             //    request.send(json);
 
-               //request.send(formData);
 
                request.addEventListener("readystatechange", function(){
                    if (request.readyState < 4) {
@@ -187,7 +187,8 @@ window.addEventListener("DOMContentLoaded", function() {
                }
 
                let json = JSON.stringify(obj); 
-                   request.send(json);
+               
+               request.send(json);
        });
     // Slider 
 
@@ -242,4 +243,61 @@ window.addEventListener("DOMContentLoaded", function() {
             }
         }
     });
+
+    // Calc
+
+    let persons = document.querySelectorAll(".counter-block-input")[0],
+        restDays = document.querySelectorAll(".counter-block-input")[1],
+        place = document.getElementById("select"),
+        totalValue = document.getElementById("total"),
+        personsSum = 0,
+        daysSum = 0,
+        total = 0;
+        
+        
+        totalValue.textContent = 0;
+
+        persons.addEventListener("change", function() {
+            personsSum = +this.value;
+            total = (daysSum + personsSum) * 4000;
+
+            if (restDays.value == "") {
+                totalValue.textContent = 0;
+            } else {
+                totalValue.textContent = total; 
+            }
+        });
+
+        restDays.addEventListener("change", function() {
+            daysSum = +this.value;
+            total = (daysSum + personsSum) * 4000;
+
+            if (persons.value == "") {
+                totalValue.textContent = 0;
+            } else {
+                totalValue.textContent = total; 
+            }
+        });
+        
+        place.addEventListener("change", function() {
+            if (restDays.value == "" || persons.value == "") {
+                totalValue.textContent = 0;
+            } else {
+                let a = total;
+                totalValue.textContent = a * this.options[this.selectedIndex].value;
+            }
+        });
+
+        persons.addEventListener("change", function() {
+            if (restDays.value == "" || restDays.value == 0 || persons.value == "" || persons.value == 0) {
+                totalValue.textContent = 0;
+            }
+        });
+
+        restDays.addEventListener("change", function() {
+            if (restDays.value == "" || restDays.value == 0 || persons.value == "" || persons.value == 0) {
+                totalValue.textContent = 0;
+            }
+        });
+
 }); 
