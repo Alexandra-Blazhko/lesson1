@@ -261,7 +261,7 @@ window.addEventListener("DOMContentLoaded", function() {
             personsSum = +this.value;
             total = (daysSum + personsSum) * 4000;
 
-            if (restDays.value == "") {
+            if (restDays.value == "" || restDays.value == 0 || persons.value == "" || persons.value == 0) {
                 totalValue.textContent = 0;
             } else {
                 totalValue.textContent = total; 
@@ -272,7 +272,7 @@ window.addEventListener("DOMContentLoaded", function() {
             daysSum = +this.value;
             total = (daysSum + personsSum) * 4000;
 
-            if (persons.value == "") {
+            if (restDays.value == "" || restDays.value == 0 || persons.value == "" || persons.value == 0) {
                 totalValue.textContent = 0;
             } else {
                 totalValue.textContent = total; 
@@ -288,16 +288,16 @@ window.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-        persons.addEventListener("change", function() {
-            if (restDays.value == "" || restDays.value == 0 || persons.value == "" || persons.value == 0) {
-                totalValue.textContent = 0;
-            }
-        });
+        // persons.addEventListener("change", function() {
+        //     if (restDays.value == "" || restDays.value == 0 || persons.value == "" || persons.value == 0) {
+        //         totalValue.textContent = 0;
+        //     }
+        // });
 
-        restDays.addEventListener("change", function() {
-            if (restDays.value == "" || restDays.value == 0 || persons.value == "" || persons.value == 0) {
-                totalValue.textContent = 0;
-            }
-        });
+        // restDays.addEventListener("change", function() {
+        //     if (restDays.value == "" || restDays.value == 0 || persons.value == "" || persons.value == 0) {
+        //         totalValue.textContent = 0;
+        //     }
+        // });
 
 }); 
