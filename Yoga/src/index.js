@@ -6,7 +6,8 @@ window.addEventListener("DOMContentLoaded", function() {
         slider = require('./js/parts/slider.js'),
         timer = require('./js/parts/timer.js'),
         popup = require('./js/parts/popup.js'),
-        modal = require('./js/parts/modal.js');
+        modal = require('./js/parts/modal.js'),
+        contact = require('./js/parts/contact.js');
 
         tabs();
         form();
@@ -15,5 +16,6 @@ window.addEventListener("DOMContentLoaded", function() {
         timer();
         modal();
         popup();
+        contact();
         
 }); 
